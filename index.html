@@ -50,7 +50,7 @@
     }
 
     .content{
-      max-width:420px;
+      max-width:460px;
     }
 
     h1{
@@ -65,7 +65,8 @@
       margin:0 0 18px;
       font-size:15px;
       line-height:1.5;
-      max-width:30ch;
+      max-width:none;
+      white-space:nowrap;
     }
 
     .pillRow{
@@ -142,7 +143,6 @@
       display:block;
     }
 
-    /* KEY FIX: allow balanced multi-line wrap under logo */
     .tagline{
       font-size:13px;
       color:rgba(255,255,255,.76);
@@ -184,9 +184,9 @@
         font-size:34px;
       }
 
-      /* KEY FIX: tighter but intentional on mobile */
       .caption{
         max-width:22ch;
+        white-space:normal;
         margin:0 auto 14px;
         font-size:15px;
       }
