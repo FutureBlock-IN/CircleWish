@@ -37,16 +37,16 @@
     .card{
       width:min(1200px,100%);
       border-radius:28px;
-      padding:42px 42px;
+      padding:42px;
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.10);
       display:grid;
-      grid-template-columns: 1.08fr .92fr;
+      grid-template-columns:1.08fr .92fr;
       gap:34px;
       align-items:center;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.28);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      box-shadow:0 20px 60px rgba(0,0,0,.28);
     }
 
     .content{
@@ -60,13 +60,11 @@
       letter-spacing:-0.03em;
     }
 
-    /* DESKTOP FIX: keep this clean and confident */
     .caption{
       color:rgba(241,245,255,.80);
       margin:0 0 24px;
       font-size:18px;
       line-height:1.45;
-      max-width:none;
       white-space:nowrap;
     }
 
@@ -105,7 +103,7 @@
       font-size:16px;
       background:rgba(255,255,255,.95);
       color:#111;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,.12);
+      box-shadow:inset 0 1px 2px rgba(0,0,0,.12);
     }
 
     .ctaBtn{
@@ -137,7 +135,8 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:10px;
+      gap:6px;
+      text-align:center;
     }
 
     .logo{
@@ -146,16 +145,15 @@
       display:block;
     }
 
-    /* DESKTOP FIX: tighter + balanced under logo */
     .tagline{
-      font-size:16px;
+      font-size:15px;
       color:rgba(255,255,255,.78);
+      line-height:1.45;
+      max-width:22ch;
+      margin-top:-6px;
       text-align:center;
-      line-height:1.4;
-      letter-spacing:.1px;
-      max-width:24ch;
+      transform:translateX(-6px);
       text-wrap:balance;
-      margin-top:-2px;
     }
 
     .mobileOnly{display:none;}
@@ -181,10 +179,11 @@
       }
 
       .tagline{
-        max-width:18ch;
-        font-size:12px;
-        line-height:1.45;
+        transform:none;
         margin-top:0;
+        max-width:18ch;
+        font-size:13px;
+        line-height:1.6;
       }
 
       h1{
@@ -240,7 +239,9 @@
       <div class="logoWrap mobileOnly">
         <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo" />
         <div class="tagline">
-          A wish at the core. A circle around it. Proof of action.
+          A wish at the core.<br>
+          A circle around it.<br>
+          Proof in action.
         </div>
       </div>
 
@@ -281,7 +282,7 @@
       <div class="logoWrap desktopOnly">
         <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo" />
         <div class="tagline">
-          A wish at the core. A circle around it. Proof of action.
+          A wish at the core. A circle around it. Proof in action.
         </div>
       </div>
 
