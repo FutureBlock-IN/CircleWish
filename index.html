@@ -19,7 +19,7 @@
 
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       background:
         radial-gradient(900px 500px at 70% 20%, rgba(74,163,199,.24), transparent),
         radial-gradient(800px 500px at 30% 80%, rgba(244,81,30,.18), transparent),
@@ -41,12 +41,13 @@
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.10);
       display:grid;
-      grid-template-columns:1.08fr .92fr;
+      grid-template-columns:1.05fr .95fr;
       gap:34px;
       align-items:center;
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
       box-shadow:0 20px 60px rgba(0,0,0,.28);
+      overflow:hidden;
     }
 
     .content{
@@ -135,29 +136,48 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:6px;
       text-align:center;
+      width:100%;
+    }
+
+    .desktopOnly{
+      display:flex;
+      width:100%;
+      max-width:520px;
+      margin:0 auto;
+    }
+
+    .mobileOnly{
+      display:none;
     }
 
     .logo{
       width:100%;
-      max-width:500px;
+      max-width:460px;
       display:block;
+      margin:0 auto;
     }
 
     .tagline{
-      font-size:15px;
       color:rgba(255,255,255,.78);
-      line-height:1.45;
-      max-width:22ch;
-      margin-top:-6px;
       text-align:center;
-      transform:translateX(-6px);
-      text-wrap:balance;
+      line-height:1.5;
     }
 
-    .mobileOnly{display:none;}
-    .desktopOnly{display:flex;}
+    /* DESKTOP: force one line */
+    .desktopTagline{
+      font-size:15px;
+      white-space:nowrap;
+      margin:14px auto 0;
+      max-width:none;
+    }
+
+    /* MOBILE: keep 3 lines */
+    .mobileTagline{
+      font-size:13px;
+      line-height:1.6;
+      margin-top:10px;
+    }
 
     @media (max-width:900px){
       .card{
@@ -167,8 +187,13 @@
         gap:14px;
       }
 
-      .mobileOnly{display:flex;}
-      .desktopOnly{display:none;}
+      .mobileOnly{
+        display:flex;
+      }
+
+      .desktopOnly{
+        display:none;
+      }
 
       .content{
         max-width:none;
@@ -176,14 +201,6 @@
 
       .logo{
         max-width:220px;
-      }
-
-      .tagline{
-        transform:none;
-        margin-top:0;
-        max-width:18ch;
-        font-size:13px;
-        line-height:1.6;
       }
 
       h1{
@@ -238,10 +255,10 @@
       <!-- MOBILE LOGO -->
       <div class="logoWrap mobileOnly">
         <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo" />
-        <div class="tagline">
+        <div class="tagline mobileTagline">
           A wish at the core.<br>
           A circle around it.<br>
-          Proof in action.
+          Proof of action.
         </div>
       </div>
 
@@ -281,8 +298,8 @@
       <!-- DESKTOP LOGO -->
       <div class="logoWrap desktopOnly">
         <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo" />
-        <div class="tagline">
-          A wish at the core. A circle around it. Proof in action.
+        <div class="tagline desktopTagline">
+          A wish at the core. A circle around it. Proof of action.
         </div>
       </div>
 
