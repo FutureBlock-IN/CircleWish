@@ -7,334 +7,267 @@
 
   <style>
     :root{
-      --bg:#070A12;
-      --text:#EAF0FF;
-      --muted:rgba(234,240,255,.72);
-      --muted2:rgba(234,240,255,.58);
+      --bg:#0A0F1C;
+      --text:#F1F5FF;
+      --muted:#AAB4D6;
 
-      --ring:rgba(234,240,255,.22);
-      --ringGlow: rgba(140,240,255,.14);
-
-      --accent:#8CF0FF;
-      --accent2:#B7A7FF;
+      --orange:#F4511E;
+      --blue:#4AA3C7;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%; overflow-x:hidden;}
+    html,body{height:100%;}
 
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family: ui-sans-serif, system-ui;
+
       background:
-        radial-gradient(1200px 800px at 50% 35%, rgba(140,240,255,.08), transparent 55%),
-        radial-gradient(900px 700px at 60% 65%, rgba(183,167,255,.10), transparent 55%),
-        radial-gradient(700px 500px at 40% 60%, rgba(124,255,178,.06), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 500px at 70% 20%, rgba(74,163,199,.25), transparent),
+        radial-gradient(800px 500px at 30% 80%, rgba(244,81,30,.20), transparent),
+        linear-gradient(180deg, #0A0F1C 0%, #0D1426 100%);
+
       color:var(--text);
     }
 
-    /* Center the whole card in the viewport */
     .wrap{
       min-height:100%;
       display:grid;
       place-items:center;
-      padding:24px 14px;
-      overflow-x:clip;
+      padding:24px;
     }
 
     .card{
-      width:min(980px, 100%);
-      margin-inline:auto;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      width:min(1100px,100%);
+      border-radius:24px;
+      padding:42px;
+
+      background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.02)
+      );
+
       border:1px solid rgba(255,255,255,.10);
-      border-radius:22px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.10);
-      overflow:hidden;
-      position:relative;
-      isolation:isolate; /* sheen stays contained */
-    }
 
-    /* Premium animated gradient sheen */
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:
-        linear-gradient(
-          120deg,
-          transparent 35%,
-          rgba(140,240,255,.10) 50%,
-          rgba(183,167,255,.08) 55%,
-          transparent 70%
-        );
-      transform: translateX(-35%);
-      animation: sheen 7.5s ease-in-out infinite;
-      pointer-events:none;
-      mix-blend-mode: screen;
-      opacity:.55;
-      z-index:0;
-    }
-
-    @keyframes sheen{
-      0%   { transform: translateX(-45%); opacity:.30; }
-      40%  { transform: translateX(15%);  opacity:.60; }
-      100% { transform: translateX(55%);  opacity:.28; }
-    }
-
-    .inner{
-      position:relative;
-      z-index:1;
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:26px;
-      padding:34px;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
       align-items:center;
+
+      backdrop-filter: blur(14px);
     }
 
-    /* Mobile: true center layout */
-    @media (max-width:860px){
-      .inner{
+    @media(max-width:900px){
+      .card{
         grid-template-columns:1fr;
-        padding:26px 18px;
-        gap:18px;
-        justify-items:center;
         text-align:center;
       }
     }
 
-    /* Brand lockup — boosted for mobile */
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:750;
-      margin-bottom:12px;
-      justify-content:flex-start;
-      font-size:16px;                 /* desktop baseline */
-      letter-spacing:.2px;
-      color:rgba(234,240,255,.92);
-    }
-    @media (max-width:860px){ .brand{justify-content:center;} }
-
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background:linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow:0 0 18px rgba(140,240,255,.40);
-      flex:0 0 auto;
-    }
-
-    @media (max-width:520px){
-      .brand{
-        font-size:18px;               /* makes CircleWish feel branded */
-        letter-spacing:.3px;
-      }
-      .dot{
-        width:11px;
-        height:11px;
-      }
-    }
-
-    /* Headline: slightly less dominant on mobile */
     h1{
-      margin:0 0 10px;
-      font-size:clamp(26px,3.2vw,40px);
-      letter-spacing:-.5px;
-      line-height:1.05;
-    }
-    @media (max-width:520px){
-      h1{
-        font-size:32px;
-        letter-spacing:-.4px;
-      }
+      font-size:clamp(32px,4vw,48px);
+      margin:0 0 12px;
     }
 
     .caption{
-      margin:0 0 14px;
       color:var(--muted);
-      font-size:15px;
-      max-width:54ch;
-      margin-inline:auto;
-      line-height:1.55;
+      margin-bottom:20px;
     }
 
-    /* Pills */
     .pillRow{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
-      margin-top:10px;
-      justify-content:flex-start;
+      gap:10px;
+      margin-bottom:20px;
     }
-    @media (max-width:860px){ .pillRow{justify-content:center;} }
 
-    @media (max-width:520px){
+    @media(max-width:900px){
       .pillRow{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-        width:100%;
-        justify-items:stretch;
+        justify-content:center;
       }
     }
 
     .pill{
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
       padding:10px 14px;
       border-radius:999px;
-      font-size:12px;
-      color:rgba(234,240,255,.82);
-      display:flex; align-items:center; gap:8px;
-      backdrop-filter:blur(8px);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:13px;
+    }
+
+    /* FORM */
+    .formRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:600px){
+      .formRow{
+        flex-direction:column;
+        align-items:center;
+      }
+    }
+
+    .emailInput{
+      padding:12px 14px;
+      border-radius:10px;
+      border:none;
+      width:260px;
+      outline:none;
+      font-size:14px;
+
+      background:rgba(255,255,255,.9);
+      color:#111;
+
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
+    }
+
+    .ctaBtn{
+      padding:12px 20px;
+      border:none;
+      border-radius:10px;
+
+      background: linear-gradient(135deg, #F4511E, #4AA3C7);
+      color:white;
+
+      font-weight:600;
+      letter-spacing:.2px;
+      cursor:pointer;
+
+      box-shadow: 0 6px 20px rgba(74,163,199,.35);
+      transition: all .25s ease;
+    }
+
+    .ctaBtn:hover{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(74,163,199,.5);
+    }
+
+    /* LOGO */
+    .logoWrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
       justify-content:center;
+      gap:16px;
+    }
+
+    .logo{
+      width:100%;
+      max-width:420px;
+      filter: drop-shadow(0 25px 50px rgba(0,0,0,.5));
+    }
+
+    @media(max-width:600px){
+      .logo{
+        max-width:240px;
+      }
+    }
+
+    .tagline{
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      text-align:center;
       white-space:nowrap;
     }
 
-    .mini{
-      width:7px;height:7px;border-radius:999px;
-      background:rgba(234,240,255,.55);
-      flex:0 0 auto;
-    }
-
-    /* Right visual block */
-    .hero{
-      display:grid;
-      place-items:center;
-      width:100%;
-    }
-
-    /* Reduce circle + star slightly on mobile */
-    .orbital{
-      width:340px;
-      aspect-ratio:1;
-      margin-inline:auto;
-    }
-    @media (max-width:520px){
-      .orbital{
-        width:min(300px, 84vw);
+    @media(max-width:600px){
+      .tagline{
+        white-space:normal;
+        font-size:13px;
       }
     }
 
-    .orbitSvg{
-      width:100%;
-      height:100%;
-      display:block;
-      margin-inline:auto;
-      filter:drop-shadow(0 0 22px var(--ringGlow));
+    /* MOBILE VS DESKTOP LOGO CONTROL */
+    .mobileOnly{
+      display:none;
     }
 
-    /* Bottom note: bigger + more modern */
-    .note{
-      margin-top:14px;
-      font-size:13px;
-      color:var(--muted2);
-      text-align:center;
-      max-width:48ch;
-      margin-inline:auto;
-      line-height:1.45;
-      letter-spacing:.2px;
-      font-weight:500;
+    .desktopOnly{
+      display:flex;
     }
-    @media (max-width:520px){
-      .note{
-        font-size:14px;
-        line-height:1.5;
+
+    @media(max-width:900px){
+      .mobileOnly{
+        display:flex;
+        margin-bottom:20px;
+      }
+
+      .desktopOnly{
+        display:none;
       }
     }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .card::after{ animation:none !important; opacity:.25; }
-    }
   </style>
 </head>
 
 <body>
   <main class="wrap">
-    <section class="card" role="region" aria-label="CircleWish coming soon">
-      <div class="inner">
 
-        <!-- LEFT -->
-        <div>
-          <div class="brand">
-            <span class="dot" aria-hidden="true"></span>
-            <span>CircleWish</span>
-          </div>
+    <section class="card">
 
-          <h1>Coming Soon</h1>
-          <p class="caption">The platform that turns intent into impact.</p>
+      <!-- MOBILE LOGO -->
+      <div class="logoWrap mobileOnly">
+        <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo">
 
-          <div class="pillRow" aria-label="Key ideas">
-            <div class="pill"><span class="mini"></span>Wishes</div>
-            <div class="pill"><span class="mini"></span>Circles</div>
-            <div class="pill"><span class="mini"></span>Trust &amp; Score</div>
-            <div class="pill"><span class="mini"></span>Proof of action</div>
-          </div>
+        <div class="tagline">
+          A wish at the core. A circle around it. Proof of action.
+        </div>
+      </div>
+
+      <!-- LEFT -->
+      <div>
+        <h1>Coming Soon</h1>
+
+        <p class="caption">
+          The platform that turns intent into impact.
+        </p>
+
+        <div class="pillRow">
+          <div class="pill">Wishes</div>
+          <div class="pill">Circles</div>
+          <div class="pill">Trust & Score</div>
+          <div class="pill">Proof of action</div>
         </div>
 
-        <!-- RIGHT -->
-        <div class="hero">
-          <div class="orbital" aria-hidden="true">
-            <svg class="orbitSvg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="dotGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="var(--accent)"/>
-                  <stop offset="100%" stop-color="var(--accent2)"/>
-                </linearGradient>
-              </defs>
+        <!-- EMAIL FORM -->
+        <form action="https://formspree.io/f/xdapvykr" method="POST">
 
-              <!-- Ring -->
-              <circle cx="200" cy="200" r="160"
-                      fill="none"
-                      stroke="var(--ring)"
-                      stroke-width="12"
-                      opacity=".95"/>
+          <div class="formRow">
 
-              <!-- Star (Wish) with subtle tint + glow -->
-              <path
-                d="M200 118
-                   L226 170
-                   L284 178
-                   L242 218
-                   L252 276
-                   L200 250
-                   L148 276
-                   L158 218
-                   L116 178
-                   L174 170 Z"
-                fill="rgba(236,248,255,.98)"
-                style="
-                  filter:
-                    drop-shadow(0 0 22px rgba(140,240,255,.35))
-                    drop-shadow(0 18px 30px rgba(0,0,0,.45));
-                "/>
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Enter your email"
+              required
+              class="emailInput"
+            >
 
-              <!-- Dots (aligned to star tips) -->
-              <g>
-                <circle cx="200" cy="40" r="6" fill="url(#dotGrad)">
-                  <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" begin="0s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="352" cy="150" r="6" fill="url(#dotGrad)">
-                  <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" begin=".4s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="294" cy="330" r="6" fill="url(#dotGrad)">
-                  <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" begin=".8s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="106" cy="330" r="6" fill="url(#dotGrad)">
-                  <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="48" cy="150" r="6" fill="url(#dotGrad)">
-                  <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
-                </circle>
-              </g>
-            </svg>
+            <button type="submit" class="ctaBtn">
+              Start Your Circle
+            </button>
+
           </div>
 
-          <div class="note">
-            A wish at the core. A circle around it. Proof of action.
-          </div>
-        </div>
+          <input type="hidden" name="source" value="circlewish-coming-soon">
+
+        </form>
 
       </div>
+
+      <!-- DESKTOP LOGO -->
+      <div class="logoWrap desktopOnly">
+        <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo">
+
+        <div class="tagline">
+          A wish at the core. A circle around it. Proof of action.
+        </div>
+      </div>
+
     </section>
+
   </main>
 </body>
 </html>
