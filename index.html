@@ -2,12 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
   <title>CircleWish — Coming Soon</title>
-   <link rel="icon" href="CWLogo.png">
+  <link rel="icon" href="CWLogo.png" />
+
   <style>
     :root{
-      --text:#F1F5FF;
+      --bg1:#07101d;
+      --bg2:#0c1527;
+      --text:#f4f7ff;
+      --muted:rgba(244,247,255,.80);
+      --muted2:rgba(244,247,255,.60);
+      --cardTop:rgba(255,255,255,.038);
+      --cardBottom:rgba(255,255,255,.018);
+      --cardBorder:rgba(255,255,255,.055);
+      --pillBg:rgba(255,255,255,.045);
+      --pillBorder:rgba(255,255,255,.075);
+      --orange:#F4511E;
+      --orangeSoft:#DD765E;
+      --blue:#66B8DA;
     }
 
     *{box-sizing:border-box}
@@ -15,296 +31,386 @@
 
     body{
       margin:0;
-      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:
-        radial-gradient(900px 500px at 70% 20%, rgba(74,163,199,.24), transparent),
-        radial-gradient(800px 500px at 30% 80%, rgba(244,81,30,.18), transparent),
-        linear-gradient(180deg, #09101d 0%, #0d1426 100%);
+      font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color:var(--text);
+      background:
+        radial-gradient(900px 520px at 74% 16%, rgba(74,163,199,.18), transparent 58%),
+        radial-gradient(840px 560px at 22% 88%, rgba(244,81,30,.11), transparent 58%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     }
 
     .wrap{
-      min-height:100%;
-      display:grid;
-      place-items:center;
-      padding:20px;
+      min-height:100vh;
+      min-height:100svh;
+      min-height:100dvh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:
+        max(16px, env(safe-area-inset-top))
+        12px
+        max(16px, env(safe-area-inset-bottom));
     }
 
     .card{
-      width:min(1200px,100%);
-      border-radius:28px;
-      padding:42px;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:34px;
-      align-items:center;
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      box-shadow:0 20px 60px rgba(0,0,0,.28);
+      width:min(1100px,100%);
+      margin:0 auto;
+      background:linear-gradient(180deg, var(--cardTop), var(--cardBottom));
+      border:1px solid var(--cardBorder);
+      border-radius:26px;
+      box-shadow:
+        0 16px 42px rgba(0,0,0,.16),
+        inset 0 1px 0 rgba(255,255,255,.02);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
       overflow:hidden;
+      position:relative;
     }
 
-    .content{
-      max-width:560px;
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(420px 150px at 12% 100%, rgba(244,81,30,.05), transparent 60%),
+        radial-gradient(360px 150px at 92% 0%, rgba(102,184,218,.05), transparent 60%);
     }
 
-    h1{
-      font-size:clamp(34px,5vw,64px);
-      margin:0 0 10px;
-      line-height:1.02;
-      letter-spacing:-0.03em;
-    }
-
-    .caption{
-      color:rgba(241,245,255,.80);
-      margin:0 0 24px;
-      font-size:18px;
-      line-height:1.45;
-      white-space:nowrap;
-    }
-
-    .pillRow{
+    .inner{
+      position:relative;
+      z-index:1;
       display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:26px;
-    }
-
-    .pill{
-      padding:11px 16px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      font-size:14px;
-      white-space:nowrap;
-      color:rgba(241,245,255,.92);
-    }
-
-    .formRow{
-      display:flex;
-      gap:12px;
-      flex-wrap:nowrap;
+      flex-direction:column;
       align-items:center;
-    }
-
-    .emailInput{
-      padding:14px 16px;
-      border-radius:14px;
-      border:none;
-      width:100%;
-      min-width:0;
-      max-width:320px;
-      outline:none;
-      font-size:16px;
-      background:rgba(255,255,255,.95);
-      color:#111;
-      box-shadow:inset 0 1px 2px rgba(0,0,0,.12);
-    }
-
-    .ctaBtn{
-      padding:15px 24px;
-      border:none;
-      border-radius:16px;
-      background:linear-gradient(135deg, #F4511E 0%, #DD765E 48%, #66B8DA 100%);
-      color:#fff;
-      font-weight:700;
-      font-size:16px;
-      cursor:pointer;
-      white-space:nowrap;
-      box-shadow:
-        0 10px 24px rgba(74,163,199,.16),
-        0 6px 18px rgba(244,81,30,.12);
-      transition:transform .22s ease, box-shadow .22s ease, filter .22s ease;
-    }
-
-    .ctaBtn:hover{
-      transform:translateY(-2px);
-      box-shadow:
-        0 14px 32px rgba(74,163,199,.22),
-        0 8px 22px rgba(244,81,30,.16);
-      filter:saturate(1.03);
+      text-align:center;
+      padding:38px 20px 40px;
     }
 
     .logoWrap{
       width:100%;
-      text-align:center;
       display:flex;
-      flex-direction:column;
-      align-items:center;
       justify-content:center;
+      align-items:center;
+      margin-bottom:18px;
     }
 
     .logo{
-      width:100%;
+      width:min(150px, 40vw);
       display:block;
-      margin:0 auto;
     }
 
-    .desktopOnly{
+    .content{
+      width:100%;
+      max-width:420px;
       display:flex;
-      max-width:520px;
-      margin:0 auto;
+      flex-direction:column;
+      align-items:center;
     }
 
-    .desktopOnly .logo{
-      max-width:460px;
+    .eyebrow{
+      margin:0 0 14px;
+      font-size:11px;
+      line-height:1;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      font-weight:700;
+      color:var(--muted2);
     }
 
-    .desktopTagline{
-      margin-top:14px;
+    h1{
+      margin:0 0 18px;
+      font-size:34px;
+      line-height:.96;
+      letter-spacing:-0.05em;
+      font-weight:850;
+    }
+
+    .subline{
+      margin:0 0 14px;
       font-size:15px;
-      line-height:1.45;
-      color:rgba(255,255,255,.78);
+      line-height:1.25;
+      font-weight:700;
+      color:var(--text);
       white-space:nowrap;
+    }
+
+    .trustLine{
+      margin:0 0 28px;
+      font-size:12px;
+      line-height:1.35;
+      font-weight:500;
+      color:var(--muted);
+      opacity:.95;
+      white-space:nowrap;
+    }
+
+    .pillRow{
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin:0 0 22px;
+    }
+
+    .pill{
+      padding:12px 8px;
+      border-radius:999px;
+      font-size:11.5px;
+      font-weight:500;
+      color:rgba(244,247,255,.92);
+      background:var(--pillBg);
+      border:1px solid var(--pillBorder);
       text-align:center;
+      white-space:nowrap;
+      opacity:.85;
     }
 
-    .mobileOnly{
-      display:none;
+    form{
+      width:100%;
+      margin:0;
     }
 
-    .mobileOnly .logo{
-      max-width:220px;
+    .formRow{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
 
-    .mobileTagline{
-      margin-top:10px;
-      font-size:13px;
-      line-height:1.6;
-      color:rgba(255,255,255,.78);
-      text-align:center;
+    .emailInput{
+      width:100%;
+      padding:18px 18px;
+      border:none;
+      border-radius:20px;
+      font-size:16px;
+      background:#fff;
+      color:#111827;
+      outline:none;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,.10);
     }
 
-    @media(max-width:900px){
+    .emailInput::placeholder{
+      color:rgba(17,24,39,.5);
+    }
+
+    .ctaBtn{
+      width:100%;
+      padding:18px 18px;
+      border:none;
+      border-radius:20px;
+      font-size:16px;
+      font-weight:800;
+      letter-spacing:.3px;
+      color:#fff;
+      cursor:pointer;
+      background:linear-gradient(135deg, var(--orange) 0%, var(--orangeSoft) 46%, var(--blue) 100%);
+      box-shadow:
+        0 10px 22px rgba(74,163,199,.13),
+        0 8px 16px rgba(244,81,30,.10);
+      transition:transform .22s ease, box-shadow .22s ease, filter .22s ease;
+    }
+
+    .ctaBtn:hover{
+      transform:translateY(-1px);
+      box-shadow:
+        0 12px 26px rgba(74,163,199,.17),
+        0 9px 18px rgba(244,81,30,.13);
+      filter:saturate(1.04);
+    }
+
+    .ctaBtn:active{
+      transform:translateY(0);
+    }
+
+    @media (max-width: 560px){
+      .wrap{
+        padding:
+          max(14px, env(safe-area-inset-top))
+          12px
+          max(14px, env(safe-area-inset-bottom));
+      }
+
       .card{
-        grid-template-columns:1fr;
-        padding:26px 18px;
-        gap:14px;
-        text-align:center;
+        border-radius:24px;
       }
 
-      .mobileOnly{
-        display:flex;
-        order:1;
+      .inner{
+        padding:34px 16px 36px;
       }
 
-      .content{
-        order:2;
-        max-width:none;
-      }
-
-      .desktopOnly{
-        display:none;
-      }
-
-      h1{
-        font-size:34px;
-      }
-
-      .caption{
-        max-width:22ch;
-        white-space:normal;
-        margin:0 auto 14px;
-        font-size:15px;
-        line-height:1.5;
-      }
-
-      .pillRow{
-        justify-content:center;
-        display:grid;
-        grid-template-columns:repeat(2, max-content);
-        gap:10px 12px;
+      .logoWrap{
         margin-bottom:20px;
       }
 
+      .logo{
+        width:min(150px, 40vw);
+      }
+
+      .content{
+        max-width:340px;
+      }
+
+      h1{
+        font-size:30px;
+        margin-bottom:20px;
+      }
+
+      .subline{
+        font-size:14px;
+        margin-bottom:16px;
+      }
+
+      .trustLine{
+        font-size:11px;
+        margin-bottom:28px;
+      }
+
+      .pillRow{
+        gap:12px;
+        margin-bottom:22px;
+      }
+
       .pill{
-        font-size:13px;
-        padding:10px 14px;
+        padding:12px 8px;
       }
 
       .formRow{
-        flex-direction:column;
+        gap:12px;
+      }
+    }
+
+    @media (min-width: 981px){
+      .wrap{
+        padding:20px;
+      }
+
+      .card{
+        border-radius:30px;
+      }
+
+      .inner{
+        display:grid;
+        grid-template-columns:minmax(300px, .92fr) minmax(460px, 1.08fr);
+        align-items:center;
+        gap:38px;
+        padding:38px 42px;
+        text-align:left;
+      }
+
+      .logoWrap{
+        justify-content:center;
+        margin-bottom:0;
+      }
+
+      .logo{
+        width:min(290px, 100%);
+      }
+
+      .content{
+        max-width:none;
+        align-items:flex-start;
+      }
+
+      .eyebrow{
+        margin:0 0 14px;
+      }
+
+      h1{
+        font-size:58px;
+        line-height:.93;
+        margin:0 0 14px;
+      }
+
+      .subline{
+        font-size:20px;
+        margin:0 0 10px;
+        white-space:nowrap;
+      }
+
+      .trustLine{
+        font-size:13px;
+        margin:0 0 24px;
+        white-space:nowrap;
+      }
+
+      .pillRow{
+        width:auto;
+        max-width:none;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        margin:0 0 22px;
+      }
+
+      .pill{
+        padding:9px 12px;
+        font-size:12px;
+      }
+
+      form{
+        max-width:none;
+        width:auto;
+      }
+
+      .formRow{
+        flex-direction:row;
         align-items:center;
         gap:12px;
       }
 
       .emailInput{
-        max-width:320px;
-        width:100%;
-        font-size:16px;
-        padding:14px 16px;
+        flex:0 0 285px;
+        width:285px;
+        padding:15px 17px;
       }
 
       .ctaBtn{
-        width:240px;
+        width:auto;
+        min-width:205px;
+        padding:15px 22px;
       }
     }
   </style>
 </head>
-
 <body>
   <main class="wrap">
     <section class="card">
-
-      <!-- MOBILE LOGO -->
-      <div class="logoWrap mobileOnly">
-        <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo" />
-        <div class="mobileTagline">
-          A wish at the core.<br>
-          A circle around it.<br>
-          Proof of action.
-        </div>
-      </div>
-
-      <!-- LEFT CONTENT -->
-      <div class="content">
-        <h1>Coming Soon</h1>
-
-        <p class="caption">
-          The platform for turning intent into impact.
-        </p>
-
-        <div class="pillRow">
-          <div class="pill">Wishes</div>
-          <div class="pill">Circles</div>
-          <div class="pill">Trust &amp; Score</div>
-          <div class="pill">Proof of action</div>
+      <div class="inner">
+        <div class="logoWrap">
+          <img src="CWlogowithname.png" alt="CircleWish logo" class="logo" />
         </div>
 
-        <form
-          action="https://formspree.io/f/xdapvykr"
-          method="POST"
-          autocomplete="off"
-        >
-          <div class="formRow">
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-              autocomplete="off"
-              class="emailInput"
-            />
-            <button type="submit" class="ctaBtn">
-              Get Early Access
-            </button>
+        <div class="content">
+          <p class="eyebrow">Coming Soon</p>
+          <h1>Turn Intent<br>Into Impact</h1>
+          <p class="subline">Create a wish. A circle fulfills it.</p>
+          <p class="trustLine">Make impact visible, measurable, and real.</p>
+
+          <div class="pillRow">
+            <div class="pill">Wishes</div>
+            <div class="pill">Circles</div>
+            <div class="pill">Trust &amp; Score</div>
+            <div class="pill">Proof of Action</div>
           </div>
 
-          <input type="hidden" name="_redirect" value="https://www.circlewish.com/thank-you.html">
-          <input type="hidden" name="source" value="circlewish-coming-soon">
-        </form>
-      </div>
+          <form action="https://formspree.io/f/xdapvykr" method="POST" autocomplete="off">
+            <div class="formRow">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                autocomplete="off"
+                class="emailInput"
+              />
+              <button type="submit" class="ctaBtn">Get Early Access</button>
+            </div>
 
-      <!-- DESKTOP LOGO -->
-      <div class="logoWrap desktopOnly">
-        <img src="CWlogowithname.png" alt="CircleWish Logo" class="logo" />
-        <div class="desktopTagline">
-          A wish at the core. A circle around it. Proof of action.
+            <input type="hidden" name="_redirect" value="https://www.circlewish.com/thank-you.html" />
+            <input type="hidden" name="source" value="circlewish-coming-soon" />
+          </form>
         </div>
       </div>
-
     </section>
   </main>
 </body>
